@@ -49,8 +49,8 @@ app.listen(process.env.PORT || 8080);
 
 
 /* GET api listing. */
-router.get('/', (req, res) => {
-    res.send('api works');
+router.get('/test', (req, res) => {
+    res.status(200).send('api works');
 });
 
 router.get("/users", function (req, res) {
