@@ -37,10 +37,10 @@ app.use(express.static(__dirname + '/dist'));
 
 // app.use('/api', api)
 
-function redirectRouter(req, res) {
-  res.sendFile("index.html", { root: './dist'})
-}
-app.use(redirectRouter);
+// function redirectRouter(req, res) {
+//   res.sendFile("index.html", { root: './dist'})
+// }
+// app.use(redirectRouter);
 
 // app.get('/*', (req, res) => {
 //     res.sendFile("index.html", { root: './dist'})
