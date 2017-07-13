@@ -13,3 +13,30 @@ admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
     databaseURL: "https://onelegacy-f0695.firebaseio.com/"
 })
+
+const db = admin.database();
+var ref = db.ref('/users/');
+ref.once("value", function(snapshot) {
+  console.log(snapshot.val());
+});
+
+function handleError(res, reason, message, code) {
+  console.log("ERROR: " + reason);
+  res.status(code || 500).json({"error": message});
+}
+/* GET api listing. */
+router.get('/test', (req, res) => {
+    res.status(200).send('api works');
+});
+
+router.get("/users", function (req, res) {
+    ref.once("value", (snapshot) => {
+        console.log(snapshot.val());
+        // res.status(200).json(snapshot)
+        res.status(200).send(snapshot.val())
+    }).catch(error => {
+        handleError(res, error, "firebase faliure")
+    });
+});
+
+module.exports = router;
