@@ -35,7 +35,7 @@ router.get("/users", function (req, res) {
     //     message: `You're logged in as with Firebase UID: Anas`
     // });
     ref.once("value", (snapshot) => {
-        console.log(snapshot.val());
+        console.log(snapshot);
         // res.status(200).json(snapshot)
         res.status(200).send(snapshot)
     }).catch(error => {
