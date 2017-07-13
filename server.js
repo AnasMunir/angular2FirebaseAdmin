@@ -30,7 +30,10 @@ function handleError(res, reason, message, code) {
 
 
 const db = admin.database();
-var ref = db.ref('users/');
+var ref = db.ref('/users/');
+ref.once("value", function(snapshot) {
+  console.log(snapshot.val());
+});
 // Run the app by serving the static files
 // in the dist directory
 app.use(express.static(__dirname + '/dist'));
