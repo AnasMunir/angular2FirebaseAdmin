@@ -31,16 +31,16 @@ router.get('/test', (req, res) => {
 });
 
 router.get("/users", function (req, res) {
-    res.json({
-        message: `You're logged in as with Firebase UID: Anas`
-    });
-    // ref.once("value", (snapshot) => {
-    //     console.log(snapshot.val());
-    //     // res.status(200).json(snapshot)
-    //     res.status(200).send(JSON.stringify(snapshot.val()))
-    // }).catch(error => {
-    //     handleError(res, error, "firebase faliure")
+    // res.json({
+    //     message: `You're logged in as with Firebase UID: Anas`
     // });
+    ref.once("value", (snapshot) => {
+        console.log(snapshot.val());
+        // res.status(200).json(snapshot)
+        res.status(200).send(json(snapshot.val()))
+    }).catch(error => {
+        handleError(res, error, "firebase faliure")
+    });
 });
 
 module.exports = router;
