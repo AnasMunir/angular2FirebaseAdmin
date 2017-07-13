@@ -37,7 +37,7 @@ router.get("/users", function (req, res) {
     ref.once("value", (snapshot) => {
         console.log(snapshot.val());
         // res.status(200).json(snapshot)
-        res.status(200).send(json(snapshot.val()))
+        res.status(200).send(snapshot.val())
     }).catch(error => {
         handleError(res, error, "firebase faliure")
     });
