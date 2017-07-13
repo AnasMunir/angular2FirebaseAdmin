@@ -19,7 +19,7 @@ const serviceAccount = require("./onelegacy-f0695-firebase-adminsdk-tgt8l-64f513
 
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
-    databaseURL: "https://onelegacy-f0695.firebaseio.com/"
+    databaseURL: "https://onelegacy-f0695.firebaseio.com"
 })
 
 // Generic error handler used by all endpoints.
