@@ -61,4 +61,6 @@ router.get("/users", function (req, res) {
     }).catch(error => {
         handleError(res, error, "firebase faliure")
     });
-})
+});
+
+module.exports = router;
