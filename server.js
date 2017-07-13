@@ -2,6 +2,7 @@ const express = require("express");
 const path = require("path");
 const bodyParser = require('body-parser');
 const router = express.Router();
+const http = require('http');
 // const admin = require("firebase-admin");
 
 // const bodyParser = require('body-parser');
@@ -38,4 +39,7 @@ app.use('/api', api)
 app.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname, 'dist/index.html'))
 });
+
+const server = http.createServer(app);
+
 app.listen(process.env.PORT || 8080);
