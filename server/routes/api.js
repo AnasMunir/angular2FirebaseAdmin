@@ -26,6 +26,7 @@ function handleError(res, reason, message, code) {
 }
 /* GET api listing. */
 router.get('/test', (req, res) => {
+    console.log("******* Api Works *******");
     res.status(200).send('api works');
 });
 
