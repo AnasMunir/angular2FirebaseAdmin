@@ -22,6 +22,9 @@ admin.initializeApp({
     databaseURL: "https://onelegacy-f0695.firebaseio.com/"
 })
 
+
+const db = admin.database();
+var ref = db.ref('users/');
 // Run the app by serving the static files
 // in the dist directory
 app.use(express.static(__dirname + '/dist'));
@@ -37,3 +40,19 @@ app.use(redirectRouter);
 //     res.sendFile("index.html", { root: './dist'})
 // });
 app.listen(process.env.PORT || 8080);
+
+
+/* GET api listing. */
+router.get('/', (req, res) => {
+    res.send('api works');
+});
+
+router.get("/users", function (req, res) {
+    ref.once("value", (snapshot) => {
+        console.log(snapshot.val());
+        // res.status(200).json(snapshot)
+        res.status(200).send(snapshot.val())
+    }).catch(error => {
+        handleError(res, error, "firebase faliure")
+    });
+})
