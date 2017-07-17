@@ -15,6 +15,7 @@ import 'rxjs/add/operator/toPromise';
 export class CustomerDetailComponent implements OnInit {
 
   customerDetail: any;
+  videos: any;
 
   constructor(private cs: CustomerService, private route: ActivatedRoute) { }
 
@@ -30,9 +31,7 @@ export class CustomerDetailComponent implements OnInit {
     this.cs.getCustomerDetails(id).subscribe((data) => {
       console.log("subscription", data);
     });
-    this.cs.getCutomerVideos(id).subscribe((data) => {
-      console.log("videos", data);
-    })
+    this.videos = this.cs.getCutomerVideos(id);
     
   }
 
