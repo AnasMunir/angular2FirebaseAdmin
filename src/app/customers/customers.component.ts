@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CustomerService } from "../_services/customer.service";
+import 'rxjs/add/operator/first';
+import 'rxjs/add/operator/take';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/toPromise';
 
 @Component({
   selector: 'app-customers',
@@ -20,8 +24,15 @@ export class CustomersComponent implements OnInit {
 
   private getAllCustomers() {
     this.customers = this.cs.getAllCustomers();
-    this.cs.getAllCustomers().subscribe(
-      (data) => console.log(data));
+  }
+  
+  private showDetails(index) {
+    // this.cs.getAllCustomers().subscribe(
+    //   (data) => console.log(data));
+    console.log("index", index);
+    this.cs.getAllCustomers().take(1).toPromise()
+      .then((data) => console.log(data))
+      .catch(error => console.log(error));
   }
 
 }

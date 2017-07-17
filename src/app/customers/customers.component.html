@@ -1,5 +1,5 @@
 <h4>List of custmoers</h4>
 
-<div *ngFor="let customer of customers | async">
-  <button (click)="showDetails()">{{customer?.user_name}}</button>
+<div *ngFor="let customer of customers | async; let i = index">
+  <button (click)="showDetails(i)">{{customer?.user_name}}</button>
 </div>
