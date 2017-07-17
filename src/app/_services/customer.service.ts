@@ -20,6 +20,6 @@ export class CustomerService {
   }
 
   getCutomerVideos(id) {
-    return this.db.object('/users/' + id + '/videos/');
+    return this.db.list('/users/' + id + '/videos/');
   }
 }
