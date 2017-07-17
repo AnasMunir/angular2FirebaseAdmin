@@ -1,0 +1,5 @@
+<h4>List of custmoers</h4>
+
+<div *ngFor="let customer of customers | async">
+  <p>{{customer?.user_name}}</p>
+</div>
