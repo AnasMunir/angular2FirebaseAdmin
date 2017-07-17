@@ -12,7 +12,7 @@ export class CustomersComponent implements OnInit {
 
   constructor(private cs: CustomerService) {
     this.getAllCustomers();
-   }
+  }
 
   ngOnInit() {
     // this.getAllCustomers();
@@ -20,6 +20,8 @@ export class CustomersComponent implements OnInit {
 
   private getAllCustomers() {
     this.customers = this.cs.getAllCustomers();
+    this.cs.getAllCustomers().subscribe(
+      (data) => console.log(data));
   }
 
 }
