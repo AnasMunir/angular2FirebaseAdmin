@@ -26,13 +26,14 @@ export class CustomersComponent implements OnInit {
     this.customers = this.cs.getAllCustomers();
   }
   
-  private showDetails(index) {
+  private async showDetails(index) {
     // this.cs.getAllCustomers().subscribe(
     //   (data) => console.log(data));
     console.log("index", index);
-    this.cs.getAllCustomers().take(1).toPromise()
-      .then((data) => console.log(data))
-      .catch(error => console.log(error));
+    const details = await this.cs.getAllCustomers().take(1).toPromise()
+    console.log(details[index]);
+      // .then((data) => console.log(data))
+      // .catch(error => console.log(error));
   }
 
 }
