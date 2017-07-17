@@ -29,6 +29,9 @@ export class CustomerDetailComponent implements OnInit {
     console.log(this.customerDetail);
     this.cs.getCustomerDetails(id).subscribe((data) => {
       console.log("subscription", data);
+    });
+    this.cs.getCutomerVideos(id).subscribe((data) => {
+      console.log("videos", data);
     })
     
   }
