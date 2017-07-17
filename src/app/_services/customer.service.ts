@@ -14,4 +14,8 @@ export class CustomerService {
   getAllCustomers() {
     return this.db.list('/users');
   }
+
+  getCustomerDetails(id) {
+    return this.db.list('/users/' + id);
+  }
 }

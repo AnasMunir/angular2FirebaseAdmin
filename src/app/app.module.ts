@@ -9,12 +9,14 @@ import { AppComponent } from './app.component';
 import { CustomerService } from "./_services/index";
 import { CustomersComponent } from './customers/customers.component';
 import { environment } from "../environments/environment";
+import { CustomerDetailComponent } from './customer-detail/customer-detail.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    CustomersComponent
+    CustomersComponent,
+    CustomerDetailComponent
   ],
   imports: [
     BrowserModule,

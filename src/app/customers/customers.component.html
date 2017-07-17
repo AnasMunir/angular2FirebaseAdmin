@@ -2,6 +2,7 @@
 
 <div *ngFor="let customer of customers | async; let i = index">
   <button (click)="showDetails(i)">{{customer?.user_name}}</button>
+  <button (click)="showDetails(customer?.$key)">{{customer?.$key}}</button>
 </div>
 
 <div *ngIf="customerObject">
