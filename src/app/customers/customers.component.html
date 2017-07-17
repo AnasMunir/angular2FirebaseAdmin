@@ -3,3 +3,10 @@
 <div *ngFor="let customer of customers | async; let i = index">
   <button (click)="showDetails(i)">{{customer?.user_name}}</button>
 </div>
+
+<div *ngIf="customerObject">
+  <h6>{{ customerObject.user_name }}</h6>
+  <p>Id: {{customerObject.$key}}</p>
+  <p>Email: {{customerObject.emial}}</p>
+  <p>DOB: {{date_of_first}}</p>
+</div>

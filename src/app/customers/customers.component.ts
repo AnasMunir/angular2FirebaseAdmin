@@ -13,6 +13,7 @@ import 'rxjs/add/operator/toPromise';
 export class CustomersComponent implements OnInit {
 
   customers: any;
+  customerObject: any;
 
   constructor(private cs: CustomerService) {
     this.getAllCustomers();
@@ -32,6 +33,8 @@ export class CustomersComponent implements OnInit {
     console.log("index", index);
     const details = await this.cs.getAllCustomers().take(1).toPromise()
     console.log(details[index]);
+    this.customerObject = details[index];
+    console.log(details[index]['$key']);
       // .then((data) => console.log(data))
       // .catch(error => console.log(error));
   }
