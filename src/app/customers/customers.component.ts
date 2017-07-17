@@ -10,10 +10,12 @@ export class CustomersComponent implements OnInit {
 
   customers: any;
 
-  constructor(private cs: CustomerService) { }
+  constructor(private cs: CustomerService) {
+    this.getAllCustomers();
+   }
 
   ngOnInit() {
-    this.getAllCustomers();
+    // this.getAllCustomers();
   }
 
   private getAllCustomers() {
