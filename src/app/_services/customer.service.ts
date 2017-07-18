@@ -47,9 +47,25 @@ export class CustomerService {
 
   delteUser(uid) {
     // return this.db.object('/users/' + uid + '/videos/' + key).remove();
-    let url = "https://frozen-journey-24504.herokuapp.com/api/delete_user"
+    let url = "https://frozen-journey-24504.herokuapp.com/api/delete_user";
     let body = new URLSearchParams();
     body.set("uid", uid);
+
+    let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+    let options = new RequestOptions({ headers: headers });
+    console.log(body);
+
+    return this.http.post(url, body, options)
+      // .do(this.logResponse)
+      .map(this.extractData)
+      .catch(this.catchError)
+  }
+
+  updateMembership(uid: string, status: string) {
+    let url = "https://frozen-journey-24504.herokuapp.com/api/update_membership";
+    let body = new URLSearchParams();
+    body.set("uid", uid);
+    body.set("status", status)
 
     let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
     let options = new RequestOptions({ headers: headers });

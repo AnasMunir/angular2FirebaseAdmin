@@ -10,6 +10,14 @@
 <div>User Name: {{ (customerDetail | async)?.user_name }}</div>
 <div>Email: {{ (customerDetail | async)?.email }}</div>
 <div>Membership: {{ (customerDetail | async)?.membership }}</div>
+<button *ngIf="disableStatus == true" (click)="statusDisabled()">Update Status</button>
+<button *ngIf="disableStatus == false" (click)="lockStatus()">Lock Status</button>
+<select (change)="updateMembership()" #updateStatus [disabled]="disableStatus">
+  <option *ngFor="let state of status"
+  value="{{state}}"
+  [selected]="state==(customerDetail | async)?.membership"
+  >{{state}}</option>
+</select>
 <div>Address: {{ (customerDetail | async)?.address }}</div>
 <div>Contact: {{ (customerDetail | async)?.contact }}</div>
 <div>Secondary Contact: {{ (customerDetail | async)?.secondaryContact }}</div>

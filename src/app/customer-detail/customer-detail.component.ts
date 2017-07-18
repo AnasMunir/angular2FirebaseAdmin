@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { CustomerService } from "../_services/customer.service";
 import { ParamMap, ActivatedRoute } from "@angular/router";
 import { Location } from "@angular/common";
@@ -15,11 +15,13 @@ declare var firebase: any;
   styleUrls: ['./customer-detail.component.css'],
 })
 export class CustomerDetailComponent implements OnInit {
-
+  @ViewChild("updateStatus") currentStatus : ElementRef ;
   customerDetail: any;
   videos: any;
   qrcodeValue: string = "";
   id: any;
+  status = ["Basic", "Standard", "Premium"];
+  disableStatus: boolean = true;
 
   constructor(
     private cs: CustomerService,
@@ -70,5 +72,27 @@ export class CustomerDetailComponent implements OnInit {
       console.error("error in response", error);
     }
   }
+
+  async updateMembership() {
+    try {
+      let status: string = this.currentStatus.nativeElement.value;
+      const response = await this.cs.updateMembership(this.id, status).take(1).toPromise()
+      console.log("response returned in json", response.json());
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  logStatus() {
+    console.log(this.currentStatus.nativeElement.value);
+  }
+
+  statusDisabled() {
+    this.disableStatus = false;
+  }
+
+  lockStatus() {
+    this.disableStatus = true;
+  }  
 
 }

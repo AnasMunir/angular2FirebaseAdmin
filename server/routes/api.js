@@ -101,6 +101,22 @@ router.post('/delete_user', (req, res) => {
             handleError(error)
         }
         );
-})
+});
 
+router.post('/update_membership', (req, res) => {
+    let uid = req.body.uid;
+    membershipStatus: req.body.status;
+    db.ref('/users/' + uid).update({
+        membership: membershipStatus
+    }).then(
+        () => {
+            res.status(200).send({ message: "status successfully updated" });
+        }
+        )
+        .catch(
+        (error) => {
+            handleError(error);
+        }
+        )
+})
 module.exports = router;
