@@ -1,3 +1,7 @@
+<img src="{{(customerDetail | async)?.profile_photo}}" alt="">
+<div *ngIf="(customerDetail | async).membership !== 'Free'">
+  <qr-code [value]="qrcodeValue" [size]="200"></qr-code>
+</div>
 <h4>Videos</h4>
 <div *ngFor="let video of videos | async">
   <h6>{{video.title}}</h6>
