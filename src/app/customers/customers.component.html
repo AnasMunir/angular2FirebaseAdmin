@@ -3,7 +3,7 @@
 <div *ngFor="let customer of customers | async; let i = index">
   <!--<img src="{{customer.profile_photo}}" alt="">-->
   <button (click)="gotoDetail(customer?.$key)">{{customer?.user_name}}</button>
-  <button (click)="">{{customer?.membership}}</button>
+  <button (click)="gotoDetail(customer?.$key)">{{customer?.membership}}</button>
   <button (click)="gotoDetail(customer?.$key)">{{customer?.$key}}</button>
 </div>
 
