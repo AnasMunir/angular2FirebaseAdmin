@@ -4,7 +4,7 @@ import { AngularFireModule } from "angularfire2";
 import { AngularFireAuthModule } from "angularfire2/auth";
 import { AngularFireDatabaseModule } from "angularfire2/database";
 import { routing } from "./app.routing";
-import { QRCodeModule } from 'angular2-qrcode';
+// import { QRCodeModule } from 'angular2-qrcode';
 
 import { AppComponent } from './app.component';
 import { CustomerService } from "./_services/index";

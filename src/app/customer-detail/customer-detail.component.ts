@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CustomerService } from "../_services/customer.service";
 import { ParamMap, ActivatedRoute } from "@angular/router";
 // import { QRCodeComponent } from 'ng2-qrcode';
-import { QRCodeComponent } from 'angular2-qrcode';
+// import { QRCodeComponent } from 'angular2-qrcode';
 declare var firebase : any;
 // import firebase from 'firebase';
 // import 'rxjs/add/operator/take';
