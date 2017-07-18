@@ -60,8 +60,8 @@ router.post('/delete_video', (req, res) => {
     db.ref('/users/' + uid + '/videos/' + videoKey).remove()
         .then(
         (data) => {
-            let object = { message: "video successfully deleted", data: data };
-            
+            let object = { message: "video successfully deleted", data: "heelo its me" };
+            console.log(object)
             res.status(200).send(JSON.stringify(object));
         }
         )
