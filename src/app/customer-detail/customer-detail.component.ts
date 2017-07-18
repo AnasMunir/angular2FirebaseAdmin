@@ -51,9 +51,7 @@ export class CustomerDetailComponent implements OnInit {
       this.cs.delteVideo(this.id, key, storageNumber)
         .subscribe(
         (data) => {
-          console.log("data returned", data);
           console.log("data returned in json", data.json());
-          console.log("stringyfied", JSON.stringify(data));
         }, error => {
           console.error("error in delete api", error);
         }
@@ -66,9 +64,7 @@ export class CustomerDetailComponent implements OnInit {
   async deleteUser() {
     try {
       const response = await this.cs.delteUser(this.id).take(1).toPromise();
-      console.log("response returned", response);
       console.log("response returned in json", response.json());
-      console.log("stringyfied", JSON.stringify(response));
       this.location.back()
     } catch (error) {
       console.error("error in response", error);

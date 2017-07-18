@@ -78,7 +78,7 @@ router.post('/delete_user', (req, res) => {
     let uid = req.body.uid;
     console.log("uid: " + uid);
 
-    db.ref('/users/' + uid).remove()
+    admin.auth().deleteUser(uid)
         .then(
         () => {
             let object = { message: "user successfully deleted", data: "heelo its me" };
