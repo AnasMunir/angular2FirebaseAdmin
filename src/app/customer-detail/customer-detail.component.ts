@@ -47,7 +47,7 @@ export class CustomerDetailComponent implements OnInit {
       this.cs.delteVideo(this.id, key, storageNumber)
         .subscribe(
         (data) => {
-          console.log(data);
+          console.log("data returned", data);
         }, error => {
           console.error("error in delete api", error);
         }

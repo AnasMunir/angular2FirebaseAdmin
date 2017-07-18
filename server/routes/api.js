@@ -61,7 +61,8 @@ router.post('/delete_video', (req, res) => {
         .then(
         (data) => {
             let object = { message: "video successfully deleted", data: "heelo its me" };
-            console.log(object)
+            console.log(object);
+            console.log("data", data);
             res.status(200).send(JSON.stringify(object));
         }
         )

@@ -40,7 +40,7 @@ export class CustomerService {
     console.log(body);
 
     return this.http.post(url, body, options)
-      .do(this.logResponse)
+      // .do(this.logResponse)
       .map(this.extractData)
       .catch(this.catchError)
   }
