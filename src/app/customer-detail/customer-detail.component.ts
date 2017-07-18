@@ -63,7 +63,7 @@ export class CustomerDetailComponent implements OnInit {
     }
   }
 
-  private async deleteUser() {
+  async deleteUser() {
     try {
       const response = await this.cs.delteUser(this.id).take(1).toPromise();
       console.log("response returned", response);
