@@ -77,17 +77,25 @@ router.post('/delete_user', (req, res) => {
     console.log('data recieved: ', req.body);
     let uid = req.body.uid;
     console.log("uid: " + uid);
-
     admin.auth().deleteUser(uid)
-        .then(
-        () => {
-            let object = { message: "user successfully deleted", data: "heelo its me" };
-            console.log(object);
-            res.status(200).send({ message: "video successfully deleted", data: "heelo its me" });
-            // res.status(200).send(JSON.stringify(object));
+        .then(() => {
+            db.ref('/users/' + uid).remove()
+                .then(
+                () => {
+                    let object = { message: "user successfully deleted", data: "heelo its me" };
+                    console.log(object);
+                    res.status(200).send({ message: "video successfully deleted", data: "heelo its me" });
+                    // res.status(200).send(JSON.stringify(object));
+                }
+                )
+                .catch(
+                (error) => {
+                    console.assert(error);
+                    handleError(error)
+                }
+                );
         }
-        )
-        .catch(
+        ).catch(
         (error) => {
             console.assert(error);
             handleError(error)
