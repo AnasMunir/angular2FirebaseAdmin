@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CustomerService } from "../_services/customer.service";
 import { ParamMap, ActivatedRoute } from "@angular/router";
-import { QRCodeComponent } from 'angular2-qrcode';
+import { QRCodeComponent } from 'ng2-qrcode';
 // import 'rxjs/add/operator/take';
 // import 'rxjs/add/operator/toPromise';
 

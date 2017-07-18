@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { AngularFireModule } from "angularfire2";
 import { AngularFireAuthModule } from "angularfire2/auth";
 import { AngularFireDatabaseModule } from "angularfire2/database";
-import { QRCodeModule } from 'angular2-qrcode';
 import { routing } from "./app.routing";
 
 import { AppComponent } from './app.component';
@@ -24,8 +23,7 @@ import { CustomerDetailComponent } from './customer-detail/customer-detail.compo
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
-    routing,
-    QRCodeModule
+    routing
   ],
   providers: [CustomerService],
   bootstrap: [AppComponent]
