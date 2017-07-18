@@ -22,4 +22,8 @@ export class CustomerService {
   getCutomerVideos(id) {
     return this.db.list('/users/' + id + '/videos/');
   }
+
+  delteVideo(key, uid) {
+    return this.db.object('/users/' + uid + '/videos/' + key).remove();
+  }
 }

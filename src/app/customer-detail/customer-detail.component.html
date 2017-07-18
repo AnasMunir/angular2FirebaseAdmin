@@ -6,9 +6,18 @@
   <!--<qrcode [qrdata]="'My QR code data string'" [size]="256" [level]="'M'"></qrcode>-->
 </div>
 <!--<p>{{ (customerDetail | async)?.profile_photo</p>-->
+<div>User Name: {{ (customerDetail | async)?.user_name }}</div>
+<div>Email: {{ (customerDetail | async)?.email }}</div>
+<div>Membership: {{ (customerDetail | async)?.membership }}</div>
+<div>Address: {{ (customerDetail | async)?.address }}</div>
+<div>Contact: {{ (customerDetail | async)?.contact }}</div>
+<div>Secondary Contact: {{ (customerDetail | async)?.secondaryContact }}</div>
+<div>Date of birth: {{ (customerDetail | async)?.date_of_birth }}</div>
+
 <h4>Videos</h4>
 <div *ngFor="let video of videos | async">
   <h6>{{video.title}}</h6>
   <video src="{{video.video}}" style="width:100%; height:180px; margin-top:20px" controls></video>
   <p>{{video.description}}</p>
+  <button (click)="deleteVideo(video.$key, video.storageNumber)">Delete</button>
 </div>

@@ -34,6 +34,8 @@ router.get("/users", function (req, res) {
     // res.json({
     //     message: `You're logged in as with Firebase UID: Anas`
     // });
+    db.ref("/users/")
+    ref.once("value").then((data => data))
     ref.once("value", (snapshot) => {
         console.log(snapshot);
         // res.status(200).json(snapshot)
@@ -42,5 +44,9 @@ router.get("/users", function (req, res) {
         handleError(res, error, "firebase faliure")
     });
 });
+
+router.post('/delete_video', (req, res) => {
+    
+})
 
 module.exports = router;
