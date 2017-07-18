@@ -17,10 +17,10 @@ admin.initializeApp({
 
 const db = admin.database();
 
-var ref = db.ref('/users/');
-ref.once("value", function (snapshot) {
-    console.log(snapshot.val());
-});
+// var ref = db.ref('/users/');
+// ref.once("value", function (snapshot) {
+//     console.log(snapshot.val());
+// });
 
 function handleError(error) {
     console.log("ERROR: " + reason);
@@ -105,7 +105,7 @@ router.post('/delete_user', (req, res) => {
 
 router.post('/update_membership', (req, res) => {
     let uid = req.body.uid;
-    membershipStatus: req.body.status;
+    let membershipStatus = req.body.status;
     db.ref('/users/' + uid).update({
         membership: membershipStatus
     }).then(
@@ -118,5 +118,5 @@ router.post('/update_membership', (req, res) => {
             handleError(error);
         }
         )
-})
+});
 module.exports = router;
