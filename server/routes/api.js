@@ -49,7 +49,6 @@ router.get("/users", function (req, res) {
 
 router.post('/delete_video', (req, res) => {
     console.log('data recieved: ', req.body);
-    console.log(req.body);
     let uid = req.body.uid;
     let videoKey = req.body.videoKey;
     let storageNumber = req.body.storageNumber;
@@ -71,8 +70,29 @@ router.post('/delete_video', (req, res) => {
             console.assert(error);
             handleError(error)
         }
+        );
+})
+
+router.post('/delete_user', (req, res) => {
+    console.log('data recieved: ', req.body);
+    let uid = req.body.uid;
+    console.log("uid: " + uid);
+
+    db.ref('/users/' + uid).remove()
+        .then(
+        () => {
+            let object = { message: "user successfully deleted", data: "heelo its me" };
+            console.log(object);
+            res.status(200).send({ message: "video successfully deleted", data: "heelo its me" });
+            // res.status(200).send(JSON.stringify(object));
+        }
         )
-    res.status(200).send(db.ref('/users/' + uid + '/videos/' + videoKey).remove());
+        .catch(
+        (error) => {
+            console.assert(error);
+            handleError(error)
+        }
+        );
 })
 
 module.exports = router;

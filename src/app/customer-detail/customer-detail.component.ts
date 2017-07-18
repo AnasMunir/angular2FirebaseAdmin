@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CustomerService } from "../_services/customer.service";
 import { ParamMap, ActivatedRoute } from "@angular/router";
+import { Location } from "@angular/common";
 // import { QRCodeComponent } from 'ng2-qrcode';
 // import { QRCodeComponent } from 'angular2-qrcode';
 declare var firebase: any;
@@ -20,7 +21,10 @@ export class CustomerDetailComponent implements OnInit {
   qrcodeValue: string = "";
   id: any;
 
-  constructor(private cs: CustomerService, private route: ActivatedRoute) { }
+  constructor(
+    private cs: CustomerService,
+    private route: ActivatedRoute,
+    private location: Location) { }
 
   ngOnInit() {
     this.getCustomerDetails();
@@ -40,7 +44,7 @@ export class CustomerDetailComponent implements OnInit {
 
   }
 
-  private async deleteVideo(/*index*/key, storageNumber) {
+  private deleteVideo(/*index*/key, storageNumber) {
     console.log(key);
     console.log(storageNumber);
     try {
@@ -53,20 +57,22 @@ export class CustomerDetailComponent implements OnInit {
         }, error => {
           console.error("error in delete api", error);
         }
-        )
-      // console.log(data);
-      // let storageRef = firebase.storage().ref();
-      // let videoRef = storageRef.child(this.id).child('videos').child(storageNumber.toString())
-      // videoRef.delete()
-      // .then(() => console.log("deleted from storage"))
-      // .catch((error) => console.error("error deleting from storage", error))
+        );
     } catch (error) {
       console.error(error);
     }
-    // this.fs.delteVideo(key)
-    //   .then((data) => console.log(data))
-    //   .then(() => this.fs.getUserVideos())
-    //   .catch((error) => console.error("error deleting video", error));
+  }
+
+  private async deleteUser() {
+    try {
+      const response = await this.cs.delteUser(this.id).take(1).toPromise();
+      console.log("response returned", response);
+      console.log("response returned in json", response.json());
+      console.log("stringyfied", JSON.stringify(response));
+      this.location.back()
+    } catch (error) {
+      console.error("error in response", error);
+    }
   }
 
 }
