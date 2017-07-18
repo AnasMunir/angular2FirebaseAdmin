@@ -48,6 +48,8 @@ export class CustomerDetailComponent implements OnInit {
         .subscribe(
         (data) => {
           console.log("data returned", data);
+          console.log("data returned in json", data.json());
+          console.log("stringyfied", JSON.stringify(data));
         }, error => {
           console.error("error in delete api", error);
         }

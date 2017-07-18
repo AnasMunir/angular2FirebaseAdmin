@@ -50,7 +50,7 @@ export class CustomerService {
   }
 
   private extractData(res: Response) {
-    return res.json();
+    return res;
   }
 
   private catchError(error: Response | any) {
