@@ -119,4 +119,26 @@ router.post('/update_membership', (req, res) => {
         }
         )
 });
+
+router.post('/block_user', (req, res) => {
+    let uid = req.body.uid;
+
+    admin.auth().updateUser(uid, {
+        disabled: true
+    });
+    admin.auth().updateUser(uid, {
+        disabled: true
+    })
+        .then(
+        (userRecord) => {
+            // See the UserRecord reference doc for the contents of userRecord.
+            console.log("Successfully updated user", userRecord.toJSON());
+            res.status(200).send(userRecord.toJSON());
+        })
+        .catch(
+        (error) => {
+            console.log("Error updating user:", error);
+            handleError(error);
+        });
+})
 module.exports = router;

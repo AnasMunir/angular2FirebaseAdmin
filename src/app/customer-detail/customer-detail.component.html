@@ -5,6 +5,7 @@
   <!--<qr-code [value]="qrcodeValue" [size]="200"></qr-code>-->
   <!--<qrcode [qrdata]="'My QR code data string'" [size]="256" [level]="'M'"></qrcode>-->
 </div>
+<button large (click)="blockUser()">Block User</button>
 <!--<p>{{ (customerDetail | async)?.profile_photo</p>-->
 <button (click)="deleteUser()">DELTE USER :O</button>
 <div>User Name: {{ (customerDetail | async)?.user_name }}</div>

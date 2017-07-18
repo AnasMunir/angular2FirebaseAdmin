@@ -15,7 +15,7 @@ declare var firebase: any;
   styleUrls: ['./customer-detail.component.css'],
 })
 export class CustomerDetailComponent implements OnInit {
-  @ViewChild("updateStatus") currentStatus : ElementRef ;
+  @ViewChild("updateStatus") currentStatus: ElementRef;
   customerDetail: any;
   videos: any;
   qrcodeValue: string = "";
@@ -83,6 +83,16 @@ export class CustomerDetailComponent implements OnInit {
     }
   }
 
+  blockUser() {
+    this.cs.blockUser(this.id)
+      .subscribe(
+      (response) => {
+        console.log("response", response)
+      }, error => {
+        console.error("error blocking user", error)
+      });
+  }
+
   logStatus() {
     console.log(this.currentStatus.nativeElement.value);
   }
@@ -93,6 +103,6 @@ export class CustomerDetailComponent implements OnInit {
 
   lockStatus() {
     this.disableStatus = true;
-  }  
+  }
 
 }
