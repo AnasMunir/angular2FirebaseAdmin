@@ -1,10 +1,11 @@
-<img src="{{(customerDetail | async)?.profile_photo}}" alt="">
+<img src="{{ (customerDetail | async)?.profile_photo }}" alt="">
 <!--<div *ngIf="(customerDetail | async)?.membership !== 'Free'">
-  <qr-code [value]="qrcodeValue" [size]="200"></qr-code>
 </div>-->
 <div>
-  <qrcode [qrdata]="'My QR code data string'" [size]="256" [level]="'M'"></qrcode>
+  <qr-code [value]="qrcodeValue" [size]="200"></qr-code>
+  <!--<qrcode [qrdata]="'My QR code data string'" [size]="256" [level]="'M'"></qrcode>-->
 </div>
+<!--<p>{{ (customerDetail | async)?.profile_photo</p>-->
 <h4>Videos</h4>
 <div *ngFor="let video of videos | async">
   <h6>{{video.title}}</h6>

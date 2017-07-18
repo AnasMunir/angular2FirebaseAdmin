@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CustomerService } from "../_services/customer.service";
 import { ParamMap, ActivatedRoute } from "@angular/router";
-import { QRCodeComponent } from 'ng2-qrcode';
+// import { QRCodeComponent } from 'ng2-qrcode';
+import { QRCodeComponent } from 'angular2-qrcode';
 // import 'rxjs/add/operator/take';
 // import 'rxjs/add/operator/toPromise';
 
@@ -29,9 +30,9 @@ export class CustomerDetailComponent implements OnInit {
     // this.customerDetail = this.cs.getCustomerDetails(id)/*.take(1).toPromise();*/
     //   .subscribe((data) => console.log(data));
     // console.log(this.customerDetail);
-    this.customerDetail = this.cs.getCustomerDetails(id).subscribe((data) => {
+    this.customerDetail = this.cs.getCustomerDetails(id)/*.subscribe((data) => {
       console.log("subscription", data);
-    });
+    });*/
     this.videos = this.cs.getCutomerVideos(id);
     
   }
