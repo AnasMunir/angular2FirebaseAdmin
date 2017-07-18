@@ -87,7 +87,7 @@ export class CustomerDetailComponent implements OnInit {
     this.cs.blockUser(this.id)
       .subscribe(
       (response) => {
-        console.log("response", response)
+        console.log("response", response.json())
       }, error => {
         console.error("error blocking user", error)
       });
