@@ -18,11 +18,11 @@ import { CustomerDetailComponent } from './customer-detail/customer-detail.compo
   declarations: [
     AppComponent,
     CustomersComponent,
-    CustomerDetailComponent,
-    HttpModule
+    CustomerDetailComponent
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     AngularFireModule.initializeApp(environment.firebase),
     // QRCodeModule,
     AngularFireAuthModule,

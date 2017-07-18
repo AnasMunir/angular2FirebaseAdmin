@@ -3,7 +3,7 @@ import { CustomerService } from "../_services/customer.service";
 import { ParamMap, ActivatedRoute } from "@angular/router";
 // import { QRCodeComponent } from 'ng2-qrcode';
 // import { QRCodeComponent } from 'angular2-qrcode';
-declare var firebase : any;
+declare var firebase: any;
 // import firebase from 'firebase';
 // import 'rxjs/add/operator/take';
 // import 'rxjs/add/operator/toPromise';
@@ -37,20 +37,27 @@ export class CustomerDetailComponent implements OnInit {
       console.log("subscription", data);
     });*/
     this.videos = this.cs.getCutomerVideos(this.id);
-    
+
   }
 
   private async deleteVideo(/*index*/key, storageNumber) {
     console.log(key);
     console.log(storageNumber);
     try {
-      const data = await this.cs.delteVideo(key, this.id)
-      console.log(data);
-      let storageRef = firebase.storage().ref();
-      let videoRef = storageRef.child(this.id).child('videos').child(storageNumber.toString())
-      videoRef.delete()
-        // .then(() => console.log("deleted from storage"))
-        // .catch((error) => console.error("error deleting from storage", error))
+      this.cs.delteVideo(this.id, key, storageNumber)
+        .subscribe(
+        (data) => {
+          console.log(data);
+        }, error => {
+          console.error("error in delete api", error);
+        }
+        )
+      // console.log(data);
+      // let storageRef = firebase.storage().ref();
+      // let videoRef = storageRef.child(this.id).child('videos').child(storageNumber.toString())
+      // videoRef.delete()
+      // .then(() => console.log("deleted from storage"))
+      // .catch((error) => console.error("error deleting from storage", error))
     } catch (error) {
       console.error(error);
     }
