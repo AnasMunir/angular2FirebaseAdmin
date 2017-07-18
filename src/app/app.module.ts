@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpModule } from "@angular/http";
 import { AngularFireModule } from "angularfire2";
 import { AngularFireAuthModule } from "angularfire2/auth";
 import { AngularFireDatabaseModule } from "angularfire2/database";
@@ -17,7 +18,8 @@ import { CustomerDetailComponent } from './customer-detail/customer-detail.compo
   declarations: [
     AppComponent,
     CustomersComponent,
-    CustomerDetailComponent
+    CustomerDetailComponent,
+    HttpModule
   ],
   imports: [
     BrowserModule,

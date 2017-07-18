@@ -11,18 +11,20 @@ const serviceAccount = require("./onelegacy-f0695-firebase-adminsdk-tgt8l-64f513
 
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
-    databaseURL: "https://onelegacy-f0695.firebaseio.com/"
+    databaseURL: "https://onelegacy-f0695.firebaseio.com/",
+    storageBucket: ""
 })
 
 const db = admin.database();
+
 var ref = db.ref('/users/');
-ref.once("value", function(snapshot) {
-  console.log(snapshot.val());
+ref.once("value", function (snapshot) {
+    console.log(snapshot.val());
 });
 
-function handleError(res, reason, message, code) {
-  console.log("ERROR: " + reason);
-  res.status(code || 500).json({"error": message});
+function handleError(error) {
+    console.log("ERROR: " + reason);
+    res.status(code || 500).json({ "error": message });
 }
 /* GET api listing. */
 router.get('/test', (req, res) => {
@@ -41,12 +43,33 @@ router.get("/users", function (req, res) {
         // res.status(200).json(snapshot)
         res.status(200).send(snapshot)
     }).catch(error => {
-        handleError(res, error, "firebase faliure")
+        handleError(error)
     });
 });
 
 router.post('/delete_video', (req, res) => {
-    
+    console.log('data recieved: ', req.body);
+    console.log(req.body);
+    let uid = req.body.uid;
+    let videoKey = req.body.videoKey;
+    let storageNumber = req.body.storageNumber;
+    console.log("uid: " + uid);
+    console.log('videoKey: ' + videoKey);
+    console.log("storageNumber: " + storageNumber);
+
+    db.ref('/users/' + uid + '/videos/' + videoKey).remove()
+        .then(
+        (data) => {
+            let object = { message: "video successfully deleted", daat: data };
+            res.status(200).send(object);
+        }
+        )
+        .catch(
+        (error) => {
+            handleError(error)
+        }
+        )
+    res.status(200).send(db.ref('/users/' + uid + '/videos/' + videoKey).remove());
 })
 
 module.exports = router;
