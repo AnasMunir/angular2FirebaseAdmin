@@ -12,7 +12,7 @@ const serviceAccount = require("./onelegacy-f0695-firebase-adminsdk-tgt8l-64f513
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
     databaseURL: "https://onelegacy-f0695.firebaseio.com/",
-    storageBucket: ""
+    storageBucket: "gs://onelegacy-f0695.appspot.com/"
 })
 
 const db = admin.database();

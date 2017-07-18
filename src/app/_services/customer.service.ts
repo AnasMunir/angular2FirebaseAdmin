@@ -46,11 +46,11 @@ export class CustomerService {
   }
 
   private logResponse(res: Response) {
-    console.log(res);
+    console.log(res.json());
   }
 
   private extractData(res: Response) {
-    return res;
+    return res.json();
   }
 
   private catchError(error: Response | any) {
