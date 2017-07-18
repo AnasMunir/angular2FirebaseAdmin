@@ -17,15 +17,15 @@ import { CustomerDetailComponent } from './customer-detail/customer-detail.compo
   declarations: [
     AppComponent,
     CustomersComponent,
-    CustomerDetailComponent,
-    QRCodeModule
+    CustomerDetailComponent
   ],
   imports: [
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
-    routing
+    routing,
+    QRCodeModule
   ],
   providers: [CustomerService],
   bootstrap: [AppComponent]

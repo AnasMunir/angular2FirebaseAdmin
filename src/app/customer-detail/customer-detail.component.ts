@@ -8,7 +8,7 @@ import { QRCodeComponent } from 'angular2-qrcode';
 @Component({
   selector: 'app-customer-detail',
   templateUrl: './customer-detail.component.html',
-  styleUrls: ['./customer-detail.component.css']
+  styleUrls: ['./customer-detail.component.css'],
 })
 export class CustomerDetailComponent implements OnInit {
 
