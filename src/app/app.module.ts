@@ -22,7 +22,7 @@ import { CustomerDetailComponent } from './customer-detail/customer-detail.compo
   imports: [
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebase),
-    QRCodeModule,
+    // QRCodeModule,
     AngularFireAuthModule,
     AngularFireDatabaseModule,
     routing
