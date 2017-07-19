@@ -93,6 +93,16 @@ export class CustomerDetailComponent implements OnInit {
       });
   }
 
+  unblockUser() {
+    this.cs.unblockUser(this.id)
+      .subscribe(
+      (response) => {
+        console.log("response", response.json())
+      }, error => {
+        console.error("error blocking user", error)
+      });
+  }
+
   logStatus() {
     console.log(this.currentStatus.nativeElement.value);
   }

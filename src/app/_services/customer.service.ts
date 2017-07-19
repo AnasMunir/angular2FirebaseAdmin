@@ -92,6 +92,21 @@ export class CustomerService {
       .catch(this.catchError)
   } 
 
+  unblockUser(uid: string) {
+    let url = "https://frozen-journey-24504.herokuapp.com/api/unblock_user";
+    let body = new URLSearchParams();
+    body.set("uid", uid);
+
+    let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+    let options = new RequestOptions({ headers: headers });
+    console.log(body);
+
+    return this.http.post(url, body, options)
+      // .do(this.logResponse)
+      .map(this.extractData)
+      .catch(this.catchError)
+  }
+
   private logResponse(res: Response) {
     console.log(res.json());
   }

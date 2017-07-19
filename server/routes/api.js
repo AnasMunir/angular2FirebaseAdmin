@@ -125,9 +125,25 @@ router.post('/block_user', (req, res) => {
 
     admin.auth().updateUser(uid, {
         disabled: true
-    });
+    })
+        .then(
+        (userRecord) => {
+            // See the UserRecord reference doc for the contents of userRecord.
+            console.log("Successfully updated user", userRecord.toJSON());
+            res.status(200).send(userRecord.toJSON());
+        })
+        .catch(
+        (error) => {
+            console.log("Error updating user:", error);
+            handleError(error);
+        });
+});
+
+router.post('/unblock_user', (req, res) => {
+    let uid = req.body.uid;
+
     admin.auth().updateUser(uid, {
-        disabled: true
+        disabled: false
     })
         .then(
         (userRecord) => {
