@@ -17,16 +17,22 @@ export class AuthService {
   async login(email: string, password: string) {
     const user = await this.afAuth.auth.signInWithEmailAndPassword(email, password);
     console.log("user", user);
+    // const userPromise = await this.db.object('users/' + user.uid).take(1).toPromise()
+    let isUserAdmin: boolean;
     const userSubscription = this.db.object('users/' + user.uid)
       .subscribe((userData) => {
         console.log("userData", userData);
         if (userData.user_type === "admin") {
           console.log("user is an admin");
+          isUserAdmin = true;
         } else {
           console.log("user is not admin");
           this.logout();
           userSubscription.unsubscribe();
+          isUserAdmin = false;
         }
+      }).add(() => {
+        return isUserAdmin;
       })
   }
 
