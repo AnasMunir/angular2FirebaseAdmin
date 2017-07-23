@@ -36,4 +36,9 @@ export class AuthService {
       })
   }
 
+  changePassword(password) {
+    const user = this.afAuth.auth.currentUser
+    return user.updatePassword(password);
+  }
+
 }
