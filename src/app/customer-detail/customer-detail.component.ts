@@ -121,4 +121,8 @@ export class CustomerDetailComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
+  goBack() {
+    this.router.navigate(['/customers']);
+  }
+
 }
