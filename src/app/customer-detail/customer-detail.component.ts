@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { CustomerService } from "../_services/customer.service";
-import { ParamMap, ActivatedRoute } from "@angular/router";
+import { ParamMap, ActivatedRoute, Router } from "@angular/router";
 import { Location } from "@angular/common";
 import { AuthService } from "../_services/auth.service";
 // import { QRCodeComponent } from 'ng2-qrcode';
@@ -19,10 +19,12 @@ export class CustomerDetailComponent implements OnInit {
   id: any;
   status = ["Basic", "Standard", "Premium"];
   disableStatus: boolean = true;
+  returnUrl: string;
 
   constructor(
     private cs: CustomerService,
     private route: ActivatedRoute,
+    private router: Router,
     private location: Location,
     private auth: AuthService) { }
 
@@ -113,8 +115,10 @@ export class CustomerDetailComponent implements OnInit {
     this.disableStatus = true;
   }
 
-  logout() {
-    this.auth.logout()
+  async logout() {
+    await this.auth.logout();
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    this.router.navigate([this.returnUrl]);
   }
 
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CustomerService } from "../_services/customer.service";
-import { Router } from "@angular/router";
+import { Router, ActivatedRoute } from "@angular/router";
 import { AuthService } from "../_services/auth.service";
 import 'rxjs/add/operator/first';
 import 'rxjs/add/operator/take';
@@ -16,9 +16,11 @@ export class CustomersComponent implements OnInit {
 
   customers: any;
   customerObject: any;
+  returnUrl: string;
 
   constructor(
     private cs: CustomerService,
+    private route: ActivatedRoute,
     private router: Router,
     private auth: AuthService) {
 
@@ -52,8 +54,10 @@ export class CustomersComponent implements OnInit {
     this.router.navigate(['/customer', key]);
   }
 
-  logout() {
-    this.auth.logout()
+  async logout() {
+    await this.auth.logout();
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    this.router.navigate([this.returnUrl]);
   }
 
 }
