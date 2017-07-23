@@ -117,8 +117,8 @@ export class CustomerDetailComponent implements OnInit {
 
   async logout() {
     await this.auth.logout();
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-    this.router.navigate([this.returnUrl]);
+    // this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    this.router.navigate(['/login']);
   }
 
 }
