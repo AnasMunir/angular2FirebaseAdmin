@@ -2,12 +2,9 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { CustomerService } from "../_services/customer.service";
 import { ParamMap, ActivatedRoute } from "@angular/router";
 import { Location } from "@angular/common";
+import { AuthService } from "../_services/auth.service";
 // import { QRCodeComponent } from 'ng2-qrcode';
 // import { QRCodeComponent } from 'angular2-qrcode';
-declare var firebase: any;
-// import firebase from 'firebase';
-// import 'rxjs/add/operator/take';
-// import 'rxjs/add/operator/toPromise';
 
 @Component({
   selector: 'app-customer-detail',
@@ -26,7 +23,8 @@ export class CustomerDetailComponent implements OnInit {
   constructor(
     private cs: CustomerService,
     private route: ActivatedRoute,
-    private location: Location) { }
+    private location: Location,
+    private auth: AuthService) { }
 
   ngOnInit() {
     this.getCustomerDetails();
@@ -113,6 +111,10 @@ export class CustomerDetailComponent implements OnInit {
 
   lockStatus() {
     this.disableStatus = true;
+  }
+
+  logout() {
+    this.auth.logout()
   }
 
 }

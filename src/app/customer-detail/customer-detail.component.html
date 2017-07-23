@@ -1,3 +1,8 @@
+<ul>
+  <li><button class="active" (click)="logout()">Logout</button></li>
+  <li><button (click)="chagePassword()">Change Password</button></li>
+</ul>
+
 <img src="{{ (customerDetail | async)?.profile_photo }}" alt="">
 <!--<div *ngIf="(customerDetail | async)?.membership !== 'Free'">
 </div>-->
