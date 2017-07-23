@@ -31,8 +31,19 @@ export class LoginComponent implements OnInit {
 
   async login() {
     try {
-      const isUserAdmin = await this.auth.login(this.loginForm.value.email, this.loginForm.value.password)
-      console.log("isUserAdmin", isUserAdmin);
+      const user = await this.auth.login(this.loginForm.value.email, this.loginForm.value.password)
+      console.log("user", user);
+      this.auth.checkIfAdmin(user.uid)
+        .subscribe(
+          isUserAdmin => {
+            console.log("isUserAdmin", isUserAdmin)
+          },
+          error => {
+            console.error("error", error);
+          }
+        )
+
+      // console.log("isUserAdmin", isUserAdmin);
     } catch (error) {
       console.error(error);
     }
