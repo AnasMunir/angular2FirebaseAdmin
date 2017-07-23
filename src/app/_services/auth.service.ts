@@ -11,6 +11,7 @@ export class AuthService {
   }
 
   logout() {
+    localStorage.removeItem('admin');
     return this.afAuth.auth.signOut();
   }
 
@@ -55,10 +56,11 @@ export class AuthService {
         if (userData.user_type === "admin") {
           console.log("user is an admin");
           // isUserAdmin = true;
+          localStorage.setItem('admin', JSON.stringify(userData));
           return true;
         } else {
           console.log("user is not admin");
-          this.logout();
+          // this.logout();
           // userSubscription.unsubscribe();
           // isUserAdmin = false;
           return false;

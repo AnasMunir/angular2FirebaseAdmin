@@ -36,7 +36,13 @@ export class LoginComponent implements OnInit {
       this.auth.checkIfAdmin(user.uid)
         .subscribe(
           isUserAdmin => {
-            console.log("isUserAdmin", isUserAdmin)
+            console.log("isUserAdmin", isUserAdmin);
+            if (isUserAdmin) {
+              console.log(this.returnUrl);
+              this.router.navigate([this.returnUrl]);
+            } else {
+              this.auth.logout();
+            }
           },
           error => {
             console.error("error", error);
