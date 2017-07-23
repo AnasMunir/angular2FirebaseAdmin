@@ -15,8 +15,19 @@ export class AuthService {
   }
 
   async login(email: string, password: string) {
-    const user = await this.afAuth.auth.signInWithEmailAndPassword(email, password)
+    const user = await this.afAuth.auth.signInWithEmailAndPassword(email, password);
     console.log("user", user);
+    const userSubscription = this.db.object('users/' + user.uid)
+      .subscribe((userData) => {
+        console.log("userData", userData);
+        if (userData.user_type === "admin") {
+          console.log("user is an admin");
+        } else {
+          console.log("user is not admin");
+          this.logout();
+          userSubscription.unsubscribe();
+        }
+      })
   }
 
 }
