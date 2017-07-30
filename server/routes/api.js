@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const router = express.Router();
 const admin = require("firebase-admin");
-// const stripe = require("stripe")("sk_test_jehay9rajNW6wTgBygvKygXr");
+const stripe = require("stripe")("sk_test_jehay9rajNW6wTgBygvKygXr");
 
 const serviceAccount = require("./onelegacy-f0695-firebase-adminsdk-tgt8l-64f5135516.json")
 
@@ -157,4 +157,28 @@ router.post('/unblock_user', (req, res) => {
             handleError(error);
         });
 })
+
+router.post('/payment', (req, res) => {
+    let amount = req.body.amount;
+    let cardToken = req.body.cardToken;
+    let description = req.body.description;
+
+    stripe.charges.create({
+        amount: parseInt(amount),
+        currency: "usd",
+        source: cardToken, // obtained with Stripe.js
+        description: description
+    }, (error, charge) => {
+        // asynchronously called
+        if (error) {
+            // res.status(500).send(error);
+            res.status(500).send({ "error": JSON.stringify(error) });
+            // handleError(error);
+        } else {
+
+            res.status(200).send(charge);
+        }
+    });
+})
+
 module.exports = router;
