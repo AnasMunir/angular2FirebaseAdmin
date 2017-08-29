@@ -6,6 +6,8 @@ const stripe = require("stripe")("sk_test_jehay9rajNW6wTgBygvKygXr");
 
 const serviceAccount = require("./onelegacy-f0695-firebase-adminsdk-tgt8l-64f5135516.json")
 
+const sgMail = require("@sendgrid/mail")
+
 // const urlencodeParser = bodyParser.urlencoded({ extended: false })
 // var jsonParser = bodyParser.jsonParser()
 
@@ -21,7 +23,17 @@ const db = admin.database();
 // ref.once("value", function (snapshot) {
 //     console.log(snapshot.val());
 // });
-
+function sendGrid() {
+    sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+    const msg = {
+        to: 'anas.munir.92@gmail.com',
+        from: 'test@example.com',
+        subject: 'Sending with SendGrid is Fun',
+        text: 'and easy to do anywhere, even with Node.js',
+        html: '<strong>and easy to do anywhere, even with Node.js</strong>',
+    };
+    sgMail.send(msg);
+}
 function handleError(error) {
     console.log("ERROR: " + reason);
     res.status(code || 500).json({ "error": message });
@@ -46,6 +58,11 @@ router.get("/users", function (req, res) {
         handleError(error)
     });
 });
+
+router.get('/test_sendgrid', (req, res) => {
+    sendGrid();
+    res.status(200).send({ message: "testing sendgrid" });
+})
 
 router.post('/delete_video', (req, res) => {
     console.log('data recieved: ', req.body);
@@ -180,5 +197,6 @@ router.post('/payment', (req, res) => {
         }
     });
 })
+
 
 module.exports = router;
